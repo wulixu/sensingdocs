@@ -40,7 +40,7 @@ templates_path = ['_templates','../../common/_templates']
 source_suffix = '.rst'
 
 # The encoding of source files.
-#source_encoding = 'utf-8-sig'
+source_encoding = 'utf-8-sig'
 
 # The master toctree document.
 master_doc = 'index'
@@ -113,32 +113,11 @@ todo_include_todos = False
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-#html_theme = 'default'
+html_theme = 'default'
 
 
 # This allows sphinx_rtd_theme to work locally
-on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 
-html_context = {
-    'on_rtd' : on_rtd
-}
-
-if not on_rtd:
-    import sphinx_rtd_theme
-    html_theme = 'sphinx_rtd_theme'
-    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-else:
-    feed_num_items = 15
-    feed_skip_regex = '(.)*index'
-    feed_base_url = 'http://docs.asp.net/en/latest'
-    feed_description = 'SensingGame Documentation'
-    feed_author = 'TronCell'
-
-def setup(app):
-    app.add_stylesheet('custom.css?v=5')
-    if on_rtd:
-        app.add_javascript('wedc.js?v=5')
-        
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
