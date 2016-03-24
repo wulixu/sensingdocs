@@ -10,6 +10,9 @@
 .. toctree::
     :titlesonly:
 
+    tutorials/index
+    
+
 Indices and tables
 ==================
 
