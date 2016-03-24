@@ -32,7 +32,7 @@ import os
 extensions = []
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ['_templates','../../common/_templates']
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -74,7 +74,7 @@ language = 'ch'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = []
+exclude_patterns = ['_build','sample/*','samples/*']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -100,6 +100,11 @@ pygments_style = 'sphinx'
 # If true, keep warnings as "system message" paragraphs in the built documents.
 #keep_warnings = False
 
+rst_epilog = """
+.. include:: /../../common/authors.txt
+.. include:: /../../common/stub-topic.txt
+"""
+
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
 
@@ -108,8 +113,35 @@ todo_include_todos = False
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+#html_theme = 'default'
 
+
+# This allows sphinx_rtd_theme to work locally
+on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+
+html_context = {
+    'on_rtd' : on_rtd
+}
+
+if not on_rtd:
+    import sphinx_rtd_theme
+    html_theme = 'sphinx_rtd_theme'
+    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+else:
+    extensions.append('yasfb')
+    feed_num_items = 15
+    feed_skip_regex = '(.)*index'
+    feed_base_url = 'http://docs.asp.net/en/latest'
+    feed_description = 'ASP.NET Documentation'
+    feed_author = 'Microsoft'
+
+def setup(app):
+    app.add_stylesheet('custom.css?v=4')
+    app.add_javascript('helpfulness.js?v=4')
+    app.add_javascript('disqus.js')
+    if on_rtd:
+        app.add_javascript('wedc.js?v=4')
+        
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
@@ -127,17 +159,17 @@ html_theme = 'default'
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-#html_logo = None
+#html_logo = '../../common/_static/favicon.ico'
 
 # The name of an image file (relative to this directory) to use as a favicon of
 # the docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
-#html_favicon = None
+html_favicon = '../../common/_static/favicon.ico'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = ['_static','../../common/_static']
 
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
