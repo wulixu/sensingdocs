@@ -131,15 +131,13 @@ else:
     feed_num_items = 15
     feed_skip_regex = '(.)*index'
     feed_base_url = 'http://docs.asp.net/en/latest'
-    feed_description = 'ASP.NET Documentation'
-    feed_author = 'Microsoft'
+    feed_description = 'SensingGame Documentation'
+    feed_author = 'TronCell'
 
 def setup(app):
-    app.add_stylesheet('custom.css?v=4')
-    app.add_javascript('helpfulness.js?v=4')
-    app.add_javascript('disqus.js')
+    app.add_stylesheet('custom.css?v=5')
     if on_rtd:
-        app.add_javascript('wedc.js?v=4')
+        app.add_javascript('wedc.js?v=5')
         
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
