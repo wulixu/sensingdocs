@@ -11,6 +11,7 @@
     :titlesonly:
 
     tutorials/index
+    demos/index
     
 
 Indices and tables
